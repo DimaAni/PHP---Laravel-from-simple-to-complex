@@ -86,7 +86,21 @@
     и спец инструкции. Инструкции предназначены для браузера при
     помощи их и тегов он отображает документ.
 </p>
-
-
+<pre>
+    &lt;!DOCTYPE html>
+html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Первая программа</title>
+</head>
+<body>  
+    
+    <?php
+    print ("Hello world PHP!!!");
+    ?>
+</body> 
+&gt;   
+</pre>
 </body>
 </html>
