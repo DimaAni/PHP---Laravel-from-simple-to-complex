@@ -108,7 +108,7 @@
         с названием типа значения на которое ссылается переменная
     </p>
     <ul>
-        <li>Значения</li>
+        <li>Значения:</li>
         <li>целочисленное - integer</li>
         <li>с плавающей запятой - double</li>
         <li>текст - string</li>
@@ -118,20 +118,23 @@
         <li>ссылка на внешний ресурс - resource</li>
         <li>отсутвие значения - NULL</li>
     </ol>
-    <?php
+    <hr>
+<pre>&lt;?php
     // Целочисленые значения;
     $value=123;
     echo $value," => тип ", gettype($value),"\n";//выведет тип integer
+    <hr>
     // Текстовое значение;
     $value="текст";
     echo $value," => тип ", gettype($value),"\n";//выведет тип string
+    <hr>
     // Действительное число;
     $value=22.3;
     echo $value," => тип ", gettype($value),"\n";//выведет тип double
+    <hr>
     // Пустая строка;
     echo $VALUE," => тип ", gettype($VALUE),"\n";//выведет тип NULL
-    ?>
-    
+?&gt;</pre>
     <hr>
     <br>
     <p>Запомнить</p>
