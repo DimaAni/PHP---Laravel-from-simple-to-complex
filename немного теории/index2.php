@@ -118,6 +118,20 @@
         <li>ссылка на внешний ресурс - resource</li>
         <li>отсутвие значения - NULL</li>
     </ol>
+    <?php
+    // Целочисленые значения;
+    $value=123;
+    echo $value," => тип ", gettype($value),"\n";//выведет тип integer
+    // Текстовое значение;
+    $value="текст";
+    echo $value," => тип ", gettype($value),"\n";//выведет тип string
+    // Действительное число;
+    $value=22.3;
+    echo $value," => тип ", gettype($value),"\n";//выведет тип double
+    // Пустая строка;
+    echo $VALUE," => тип ", gettype($VALUE),"\n";//выведет тип NULL
+    ?>
+    
     <hr>
     <br>
     <h2>Допонение</h2>
