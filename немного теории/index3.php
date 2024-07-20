@@ -74,6 +74,11 @@ else {
     print("Число $number  НЕ делится на $A");
 }
 ?&gt;
+<p>
+    Вместо команды $number=(integer)trim(fgets(STDIN)) можно применить
+    явное присваивание значения п-ой $number: вот так $number = 5 
+    или так
+</p>
 </pre>  
 </body>
 </html>
