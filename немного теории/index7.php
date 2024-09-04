@@ -196,6 +196,110 @@ echo $tag->setAttrs(['id' => 'test', 'class' => 'eee'])
 </pre>
 <hr>
 <br>
+<h2>Конструкторы и Деструкторы</h2>
+<p>
+Конструктор (__construct) вызывается при создании нового объекта, позволяя инициализировать его свойства.
+Деструктор (__destruct) вызывается автоматически, когда объект теряет последнюю ссылку на него и 
+должен быть освобожден из памяти.
+</p>
+<p>
+    Пример с __construct
+</p>
+<pre>
+&lt;?php
+class Person {
+public $name, $age;
+function __construct($name, $age) {
+$this->name = $name;
+$this->age = $age;
+}
+function displayInfo() {
+echo "Name: {$this->name}; Age: {$this->age}<br>";
+}
+}
+$tom = new Person("Иван", 33);
+$tom->displayInfo();
+
+//В этом примере конструктор принимает два параметра: имя и возраст, и присваивает 
+//их соответствующим свойствам объекта.
+?&gt;
+</pre>
+<p>
+    Пример с __destruct
+</p>
+<pre>
+&lt;?php
+class Person {
+public $name, $age;
+function __construct($name, $age) {
+$this->name = $name;
+$this->age = $age;
+}
+function displayInfo() {
+echo "Name: {$this->name}; Age: {$this->age}<br>";
+}
+function __destruct() {
+echo "Вызов деструктора";
+}
+}
+//Здесь деструктор просто выводит сообщение о своем вызове. Важно понимать, 
+//что деструктор вызывается автоматически, когда объект больше не используется
+//в программе и должен быть освобожден из памяти.
+?&gt;
+</pre>
+<p>
+Использование параметров по умолчанию в конструкторе:    
+</p>
+
+<pre>
+&lt;?php
+class Person {
+public $name, $age;
+function __construct($name = "Иван", $age = 33) {
+$this->name = $name;
+$this->age = $age;
+}
+function displayInfo() {
+echo "Name: {$this->name}; Age: {$this->age}<br>";
+}
+}
+$иван = new Person();
+$иван->displayInfo();
+//В этом примере параметры конструктора имеют значения по умолчанию, что позволяет 
+//создавать объекты без указания всех параметров.
+?&gt;
+<p>
+Объявление свойств через конструктор:
+</p>
+<pre>
+&lt;?php
+class Person {
+function __construct(public $name, public $age) {
+$this->name = $name;
+$this->age = $age;
+}
+function displayInfo() {
+echo "Name: {$this->name}; Age: {$this->age}<br>";
+}
+}
+$tom = new Person("Иван", 33);
+$tom->displayInfo();
+//В этом примере параметры конструктора с модификатором доступа public автоматически 
+//становятся свойствами класса.
+?&gt;
+</pre>
+
+<pre>
+&lt;?php
+
+?&gt;
+</pre>
+
+
+
+
+
+
 
 
 </body>
