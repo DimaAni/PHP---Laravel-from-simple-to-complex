@@ -377,12 +377,89 @@ callFunction(function() {
 </p>
 <hr>
 <br>
-
+<h2>
+    Многоуровневое наследование
+</h2>
+<p>
+В PHP есть такая штука — многоуровневое наследование. Это когда класс может взять свойства 
+и методы не от одного, а от нескольких классов-родителей. А те, в свою очередь, тоже могут
+брать что-то от других классов. Это удобно, потому что код становится более модульным и
+его легче поддерживать.Пример ниже
+</p>
 <pre>
 &lt;?php
+// Базовый класс Vehicle
+class Vehicle {
+    public $model;
+    public $current_speed;
 
+    public function setSpeed($mph) {
+        $this->current_speed = $mph;
+    }
+
+    public function getSpeed() {
+        return $this->current_speed;
+    }
+}
+
+// Класс Land, наследующий от Vehicle
+class Land extends Vehicle {
+    public $terrain;
+
+    public function setTerrain($terrain) {
+        $this->terrain = $terrain;
+    }
+
+    public function getTerrain() {
+        return $this->terrain;
+    }
+}
+
+// Класс Car, наследующий от Land
+class Car extends Land {
+    public $fuel_type;
+
+    public function setFuelType($fuel) {
+        $this->fuel_type = $fuel;
+    }
+
+    public function getFuelType() {
+        return $this->fuel_type;
+    }
+}
+
+// Создание объекта Car
+$car = new Car();
+
+// Установка свойств и вызов методов
+$car->setSpeed(60);
+$car->setTerrain('асфальт');
+$car->setFuelType('бензин');
+
+echo "Текущая скорость: " . $car->getSpeed() . "<br>";
+echo "Тип местности: " . $car->getTerrain() . "<br>";
+echo "Тип топлива: " . $car->getFuelType();
 ?&gt;
 </pre>
+<p>
+В этом примере класс Car получил свойства и методы от классов Land и Vehicle. 
+Это как если бы мы взяли две машины и сделали из них одну. У этой новой машины 
+будут все характеристики и функции от двух старых.
+</p>
+<p>
+Какие преимущества есть у такого насдедования?    
+</p>
+<ul>
+    <li>
+    Код получается более модульным и удобным для работы.
+    </li>
+    <li>
+    В него легко вносить изменения, потому что они не влияют на другие части программы.    
+    </li>
+    <li>
+    Логика программы становится понятнее и проще для поддержки.    
+    </li>
+</ul>
 <hr>
 <br>
 
