@@ -60,9 +60,82 @@ abstract class User {
 свойство $name и методы getName() и setName(), а также абстрактный метод increaseRevenue(),
 который должен быть реализован в наследниках.
 </p>
-
 <hr>
 <br>
+<h2>Интерфейсы</h2>
+<p>
+    Интерфейсы очень напоминают абстрактный класс и разница между ними в том что абстрактный класс 
+    может иметь неабстракные методы а интерфесы же  - нет.Так же у интерфейса нет полей но могут быть 
+    константы (const). Преимущество интерфейсов в том что один класс может реализовать несколько интерфейсов.  
+</p>
+<p>
+    Интерфейсы объявляются так же, как и обычные классы, но с использованием ключевого слова 
+    interface вместо class.
+</p>
+<p>
+    Тела методов интерфейсов должны быть пустыми. Все методы, определённые в интерфейсах, 
+    должны быть общедоступными.
+</p>
+<p>
+    Класс, реализующий интерфейс, должен реализовать все методы, описанные в интерфейсе, 
+    иначе произойдёт фатальная ошибка.Класс может реализовывать несколько интерфейсов, 
+    разделяя каждый интерфейс запятой.
+</p>
+<p>
+    С PHP 8.0, в языке поддерживаются именованные аргументы, и вызывающий код может 
+    полагаться на имя параметра в интерфейсе.Примеры:
+</p>
+<pre>
+&lt;?php
+//Взаимозаменяемость объектов:
+// Интерфейс Template
+interface Template {
+    public function setVariable($name, $var);
+    public function getHtml($template);
+}
+
+// Реализация интерфейса
+class WorkingTemplate implements Template {
+    private $vars = [];
+
+    public function setVariable($name, $var) {
+        $this->vars[$name] = $var;
+    }
+
+    public function getHtml($template) {
+        foreach($this->vars as $name => $value) {
+            $template = str_replace('{'. $name. '}', $value, $template);
+        }
+
+        return $template;
+    }
+}
+?&gt;
+</pre>
+
+<pre>
+&lt;?php
+//Использование интерфейсов для параметров:
+// Интерфейс Cacheable
+interface Cacheable {
+    public function getCachedData();
+}
+
+// Функция, принимающая параметр, соответствующий интерфейсу Cacheable
+function processData(Cacheable $cacheable) {
+    // Использование метода getCachedData()
+    echo $cacheable->getCachedData();
+}
+?&gt;
+</pre>
+<hr>
+<br>
+<h2>Наследование интерфейсов</h2>
+<pre>
+&lt;?php
+
+?&gt;
+</pre>
 
 
 </body>
