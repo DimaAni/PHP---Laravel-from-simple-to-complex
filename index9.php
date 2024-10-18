@@ -128,44 +128,79 @@ function processData(Cacheable $cacheable) {
 }
 ?&gt;
 </pre>
-<hr>
-<br>
-<h2>Наследование интерфейсов</h2>
 <p>
 В PHP можно сделать так, чтобы один интерфейс наследовал методы другого интерфейса. 
 Для этого используется ключевое слово extends.
 </p>
+<hr>
+<br>
+<h2>Трейты</h2>
+<p>
+Трейты в PHP — это как бы готовые блоки кода, которые можно вставить в любой класс. 
+Они похожи на классы, но не такие самостоятельные. С их помощью можно сделать так, 
+чтобы один и тот же код работал в разных классах.
+Трейты помогают не писать один и тот же код много раз, а использовать уже готовый. 
+Они похожи на абстрактные классы, но отличаются тем, что у них есть методы с реализацией.
+Чтобы использовать трейт, нужно добавить его в класс с помощью оператора use.
+</p>
+<p>
+Пример трейта:    
+</p>
 <pre>
 &lt;?php
-//интерфейс: 
-interface Alfa {
-   public function show();
+trait Singleton {
+private static $instance;
+public static function getInstance() {
+if (!(self::$instance instanceof Singleton)) {
+self::$instance = new self;
 }
-
-// Интерфейс Alfa наследует интерфейс Bravo:
-interface Bravo extends Alfa {
-    public function set($val); 
+return self::$instance;
 }
-
-// Класс реализует итерфtс Bravo:
-
-    class MyClass implements Bravo {
-        public $num;
-        
-    public function set($val) {
-            $this->num= $val;
-        }
-    public  function show() {
-            echo "\$num = " . $this->num . "\n";  //$num = 123
-        }
 }
-// Создание объекта: 
-$obj = new MyClass();
-// Проверка результата: 
-$obj->set(123);
-$obj->show();
 ?&gt;
 </pre>
+
+<p>
+Преимущества использования трейтов:
+Минимизация дублирования кода: Трейты позволяют избежать дублирования кода, 
+это улучшает читаемость и поддержку кода.
+Гибкость: Трейты могут быть включены в несколько классов, находящихся в разных иерархиях,
+что делает код более гибким.
+Расширяемость: Трейты позволяют расширять функциональность классов без необходимости изменения их структуры.
+Пример использования трейтов:
+</p>
+<pre>
+&lt;?php
+class DbReader extends ArrayObject {
+use Singleton;
+}
+
+class FileReader extends SplFileObject {
+use Singleton;
+}
+?&gt;
+<p>
+
+</p>
+</pre>
+<hr>
+<br>
+
+<pre>
+&lt;?php
+
+?&gt;
+</pre>
+<hr>
+<br>
+
+<pre>
+&lt;?php
+
+?&gt;
+</pre>
+<hr>
+<br>
 
 
 </body>
