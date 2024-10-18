@@ -131,9 +131,39 @@ function processData(Cacheable $cacheable) {
 <hr>
 <br>
 <h2>Наследование интерфейсов</h2>
+<p>
+В PHP можно сделать так, чтобы один интерфейс наследовал методы другого интерфейса. 
+Для этого используется ключевое слово extends.
+</p>
 <pre>
 &lt;?php
+//интерфейс: 
+interface Alfa {
+   public function show();
+}
 
+// Интерфейс Alfa наследует интерфейс Bravo:
+interface Bravo extends Alfa {
+    public function set($val); 
+}
+
+// Класс реализует итерфtс Bravo:
+
+    class MyClass implements Bravo {
+        public $num;
+        
+    public function set($val) {
+            $this->num= $val;
+        }
+    public  function show() {
+            echo "\$num = " . $this->num . "\n";  //$num = 123
+        }
+}
+// Создание объекта: 
+$obj = new MyClass();
+// Проверка результата: 
+$obj->set(123);
+$obj->show();
 ?&gt;
 </pre>
 
