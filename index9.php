@@ -179,29 +179,139 @@ class FileReader extends SplFileObject {
 use Singleton;
 }
 ?&gt;
+</pre>
+<hr>
+<br>
+<h2>Контроль типа объекта</h2>
 <p>
-
+Контроль типов. Это значит, что функции и классы могут требовать, чтобы параметры 
+были определённого типа. Например, это может быть объект определённого класса, 
+интерфейс, массив (начиная с PHP 5.1) или колбек с типом callable (начиная с PHP 5.4).
+примеры ниже.
 </p>
-</pre>
 <hr>
 <br>
 
 <pre>
 &lt;?php
+// Тестовый класс
+class MyClass {
+    /**
+     * Тестовая функция
+     * Первый параметр должен быть объектом типа OtherClass
+     */
+    public function test(OtherClass $otherclass) {
+        echo $otherclass->var;
+    }
 
+    /**
+     * Другая тестовая функция
+     * Первый параметр должен быть массивом
+     */
+    public function test_array(array $input_array) {
+        print_r($input_array);
+    }
+
+    /**
+     * Первый параметр должен быть итератором
+     */
+    public function test_interface(Traversable $iterator) {
+        echo get_class($iterator);
+    }
+
+    /**
+     * Первый параметр должен быть типа callable
+     */
+    public function test_callable(callable $callback, $data) {
+        call_user_func($callback, $data);
+    }
+}
+
+// Другой тестовый класс
+class OtherClass {
+    public $var = 'Hello World';
+}
 ?&gt;
 </pre>
+<p>
+    А если попробуем передать аргумент неправильного типа. Результатом будет фатальная ошибка.
+</p>
+<pre>
+&lt;?php
+// Экземпляры каждого класса
+$myclass = new MyClass;
+$otherclass = new OtherClass;
+
+// Ошибка: Аргумент 1 должен быть экземпляром класса OtherClass
+$myclass->test('hello');
+
+// Ошибка: Аргумент 1 должен быть экземпляром класса OtherClass
+$foo = new stdClass;
+$myclass->test($foo);
+
+// Ошибка: Аргумент 1 не должен быть null
+$myclass->test(null);
+
+// Работает: Выводит Hello World
+$myclass->test($otherclass);
+?&gt;
+</pre>
+<p>Контроль типов также работает с функциями:</p>
+<pre>
+&lt;?php
+// Пример класса
+class MyClass {
+    public $var = 'Hello World';
+}
+
+/**
+ * Тестовая функция
+ * Первый параметр должен быть объект класса MyClass
+ */
+function myFunction(MyClass $foo) {
+    echo $foo->var;
+}
+
+// Это работает
+$myclass = new MyClass;
+myFunction($myclass);
+?&gt;
+</pre>
+<p>Вот пример контроля типов</p>
+<pre>
+&lt;?php
+* Прием значения NULL */
+function test(stdClass $obj = NULL) {
+}
+
+test(NULL);
+test(new stdClass);
+?&gt;
+</pre>
+
+
+
 <hr>
 <br>
 
 <pre>
 &lt;?php
+<pre>
+&lt;?php
 
 ?&gt;
 </pre>
+
+
+
 <hr>
 <br>
+?&gt;
+</pre>
 
 
+
+<hr>
+<br>
 </body>
 </html>
