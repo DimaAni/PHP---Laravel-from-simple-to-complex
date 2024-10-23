@@ -280,7 +280,7 @@ myFunction($myclass);
 <p>Вот пример контроля типов</p>
 <pre>
 &lt;?php
-* Прием значения NULL */
+* Пример значения NULL */
 function test(stdClass $obj = NULL) {
 }
 
@@ -288,14 +288,12 @@ test(NULL);
 test(new stdClass);
 ?&gt;
 </pre>
-
-
-
 <hr>
 <br>
-
+<h2>Пространство имен</h2>
 <pre>
 &lt;?php
+
 <pre>
 &lt;?php
 
