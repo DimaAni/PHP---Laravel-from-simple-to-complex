@@ -291,6 +291,103 @@ test(new stdClass);
 <hr>
 <br>
 <h2>Пространство имен</h2>
+<p>
+Пространства имён в PHP позволяют группировать уникальные идентификаторы (имена) 
+в абстрактные хранилища, что помогает избежать конфликтов имён при использовании сторонних библиотек.
+</p>
+<p>
+    Создание пространства имен включает в себя.
+</p>
+<ol>
+    <li>
+        Создание пространства имен.
+        Пример создания: 
+<pre>
+    namespace my\oneProject;
+</pre>
+    </li>
+    <li>
+        Использование классов имен.
+        Пример создания класса в пространстве имен: 
+<pre>
+    namespace my\oneProject;
+    class MyClass {
+    }
+</pre>
+    </li>
+    <li>
+        Использование классов в других файлах. Пример:
+<pre>
+    //Для использования класса в другом файле нужно указать пространство имен. 
+    require_once("myclass.php");
+    $mc = new MyClass(); // Ошибка: класс не найден
+    $mc = new my\oneProject\MyClass(); // Работает
+</pre>
+    </li>
+    <li>
+        Множественные пространства имен в одном файле: 
+<pre>
+    //Можно использовать несколько пространств имен в одном файле.Пример ипользования: 
+    namespace Project;
+    const CONNECT_OK = 1;
+    class Connection {
+    }
+    function connect() {
+    }
+
+    namespace AnotherProject;
+    const CONNECT_OK = 1;
+    class Connection {
+    }
+    function connect() {
+    }
+</pre>
+    </li>
+    <li>
+        Использование синтаксиса со скобками:
+    <pre>
+    //Если нужно использовать несколько пространств имён в глобальном коде, 
+    //используем синтаксис со скобками.Пример:
+    namespace Project {
+    const CONNECT_OK = 1;
+    class Connection {
+    }
+    function connect() {
+    }
+    }
+
+    namespace {
+    // Глобальный код
+    session_start();
+    $a = Project\connect();
+    echo Project\Connection::start();
+    }
+    </pre>
+    </li>
+    <li>
+        Определение пространства имен: 
+    <pre>
+    // Определение пространства имен должно быть первой строкой кода в файле. Пример: 
+    namespace MySpace;    
+    </pre>    
+    </li>
+    <li>
+        Определение текущего пространства имен. Пример: 
+    // Для того чтобы узнать это - используем константу __NAMESPACE__
+    namespace Project;
+    echo '"', __NAMESPACE__, '"'; // Выведет "Project"    
+    </li>
+    <li>
+        Динамическое конструирование имен. Пример: 
+    <pre>
+    namespace Project;
+    function incl($classname) {
+    $a = __NAMESPACE__. '\\'. $classname;
+    return new $a;
+    }
+    </pre>    
+    </li>
+</ol>
 <pre>
 &lt;?php
 
