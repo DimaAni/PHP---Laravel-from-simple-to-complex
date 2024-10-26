@@ -391,25 +391,74 @@ test(new stdClass);
     </pre>    
     </li>
 </ol>
-<pre>
-&lt;?php
-
-<pre>
-&lt;?php
-
-?&gt;
-</pre>
-
-
-
 <hr>
 <br>
-?&gt;
+    <h2>Анонимные классы:</h2>
+    <p>
+    Анонимные классы в PHP — это классы, которые не имеют имени. Они полезны, 
+    когда нужно создать объект класса, который будет использоваться только один раз и больше не понадобится.     
+    </p>
+    <ol>
+        <li>
+        Создание анонимного класса: 
+        <pre>
+//Для создания анонимного класса используется ключевое слово new, за которым следует 
+//ключевое слово class и тело класса в фигурных скобках.Пример:
+$person = new class {
+public $name;
+unction sayHello() {
+echo "Hello!<br>";
+}
+};    
+        </pre>    
+        </li>
+<li>
+    Определение свойств и методов: 
+<pre>
+//Анонимные классы могут опрекделять свойства и методы как обычные классы: 
+$person = new class {
+    public $name;
+    function sayHello() {
+        echo "Hello!<br>";
+    }
+};
+$person->sayHello();
+$person->name = "Sam";
+echo "Name: " . $person->name . "<br>"; // Hello!<br>Name: Sam
 </pre>
+</li>
+<li>
+    Определение конструкторов: 
+<pre>
+    //Анонимные классы могут определять конструкторы.
+$person = new class("Bob") {
+public $name;
+function __construct($name) {
+    $this->name = $name;
+}
+function sayHello() {
+    echo "Hello!<br>";
+}
+};
+echo "Hello, " . $person->name . "<br>"; // Hello, Bob  
+</pre>
+</li>
+<li>
+    Сокращенное определение св-в в конструкторе: 
+<pre>
+//Можно сократить определение класса определяя св-ва.Пример:
+$person = new class("Bob", 34) {
+    function __construct(public $name, public $age) {
+        $this->name = $name;
+    }
+    function displayInfo() {
+        echo "Name: $this->name; Age: $this->age<br>";
+    }
+};
+$person->displayInfo(); // Name: Bob; Age: 34    
+</pre>
+</li>
+</ol>
 
-
-
-<hr>
-<br>
 </body>
 </html>
